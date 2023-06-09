@@ -3,7 +3,6 @@ package com.application.a3.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -19,8 +18,6 @@ import com.application.a3.exception.GenericException;
 import com.application.a3.model.dto.FornecedorDto;
 import com.application.a3.service.FornecedorService;
 import com.application.a3.utils.CadastroNacionalHelper;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.application.a3.domain.entity.Produto;
 import com.application.a3.model.dto.ProdutoDto;
-import com.application.a3.model.ref.TipoOperacao;
 import com.application.a3.service.ProdutoService;
 
 import jakarta.validation.Valid;
@@ -39,8 +38,7 @@ public class ProdutoController {
 	}
 
 	@PutMapping("/atualizar/{id}")
-	public ProdutoDto atualizarProduto(@PathVariable("id") Integer id, 
-			@Valid @RequestBody ProdutoDto dto) {
+	public ProdutoDto atualizarProduto(@PathVariable("id") Integer id, @Valid @RequestBody ProdutoDto dto) {
 		return produtoService.atualizarProduto(id, dto);
 	}
 

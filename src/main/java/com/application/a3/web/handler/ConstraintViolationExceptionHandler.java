@@ -53,7 +53,7 @@ public class ConstraintViolationExceptionHandler {
 			sb.append(String.format(" %s  %s.", ExceptionReturnMessage.INFORMACAO_NULA, nullFields.toString()));
 		}
 		if (!patternFields.isEmpty()) {
-			sb.append(String.format(" %s  %s.", ExceptionReturnMessage.ARGUMENTO_INVALIDO, patternFields.toString()));
+			sb.append(String.format(" %s  %s.", ExceptionReturnMessage.TAMANHO_INVALIDO, patternFields.toString()));
 		}
 		if (!sizeFields.isEmpty()) {
 			sb.append(String.format(" %s  %s.", ExceptionReturnMessage.TAMANHO_INVALIDO, sizeFields.toString()));

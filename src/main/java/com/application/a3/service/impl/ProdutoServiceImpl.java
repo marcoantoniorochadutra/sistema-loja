@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -21,8 +20,6 @@ import com.application.a3.domain.jpa.repository.ProdutoRepository;
 import com.application.a3.exception.GenericException;
 import com.application.a3.model.dto.ProdutoDto;
 import com.application.a3.service.ProdutoService;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
@@ -106,12 +103,7 @@ public class ProdutoServiceImpl extends AbstractJpaCrudService<Produto, ProdutoD
 
 	@Override
 	public void excluirProduto(Integer id) {
-		if (getRepository().existsById(id)) {
-			getRepository().deleteById(id);
-		} else {
-			throw new EntityNotFoundException("Produto, " + id);
-		}
-
+		deletar(id);
 	}
 
 }

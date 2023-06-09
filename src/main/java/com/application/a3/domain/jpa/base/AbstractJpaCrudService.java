@@ -13,36 +13,41 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.application.a3.constants.ExceptionReturnMessage;
 import com.application.a3.domain.entity.Auditoria;
 import com.application.a3.domain.entity.Operacao;
+import com.application.a3.domain.entity.Usuario;
 import com.application.a3.domain.jpa.repository.AuditoriaRepository;
 import com.application.a3.exception.GenericException;
 import com.application.a3.model.ref.AuditableEntity;
 import com.application.a3.model.ref.CrudEntity;
 import com.application.a3.model.ref.TipoOperacao;
-
-import jakarta.persistence.EntityNotFoundException;
+import com.application.a3.model.ref.TipoUsuario;
 
 public abstract class AbstractJpaCrudService<D extends CrudEntity, M> {
 
 	protected abstract <T extends JpaRepository<D, Integer>> T getRepository();
+
 	protected abstract Class<D> getDomainClass();
+
 	protected abstract Class<M> getModelClass();
+
 	protected final AuditoriaRepository auditoriaRepository;
 	protected ModelMapper modelMapper = new ModelMapper();
-	
+
 	public AbstractJpaCrudService(AuditoriaRepository auditoriaRepository) {
 		this.auditoriaRepository = auditoriaRepository;
 	}
-	
+
 	public M cadastrar(M dto) {
 		D entity = mapperCadastro(dto, modelMapper);
 		atualizarAntes(entity, dto);
 		setCreateFields(entity);
 		entity = getRepository().saveAndFlush(entity);
-		
-		if(entity instanceof AuditableEntity) {
+
+		if (entity instanceof Operacao) {
+			buildAuditoria(entity, TipoOperacao.VENDA);
+		} else if (entity instanceof AuditableEntity) {
 			buildAuditoria(entity, TipoOperacao.CRIACAO);
 		}
-		
+
 		atualizarDepois(entity, dto);
 		return mappingResult(entity);
 
@@ -54,32 +59,29 @@ public abstract class AbstractJpaCrudService<D extends CrudEntity, M> {
 		isAtivo(entity);
 		mapperAtualizacao(dto, modelMapper, entity);
 		entity = atualizarAntes(entity, dto);
-		entity = getRepository().saveAndFlush(entity);	
-		
-		if(entity instanceof AuditableEntity) {
+		entity = getRepository().saveAndFlush(entity);
+
+		if (entity instanceof AuditableEntity) {
 			buildAuditoria(entity, TipoOperacao.EDICAO);
 		}
-		
+
 		atualizarDepois(entity, dto);
 		return mappingResult(entity);
 	}
 
 	public void deletar(Integer id) {
 		D entity = getRepository().getReferenceById(id);
-		
-		if(Objects.nonNull(entity)) {
+
+		if (Objects.nonNull(entity)) {
 			getRepository().deleteById(id);
 		}
-		
-		if(entity instanceof Operacao) {
+
+		if (entity instanceof Operacao) {
 			buildAuditoria(entity, TipoOperacao.REEMBOLSO);
-		} else if(entity instanceof AuditableEntity) {
+		} else if (entity instanceof AuditableEntity) {
 			buildAuditoria(entity, TipoOperacao.EXCLUSAO);
 		}
-		
 
-	
-		
 	}
 
 	protected D mapperCadastro(M dto, ModelMapper mapper) {
@@ -114,16 +116,15 @@ public abstract class AbstractJpaCrudService<D extends CrudEntity, M> {
 	}
 
 	protected Auditoria buildAuditoria(D entity, TipoOperacao operacao) {
-
 		if (entity instanceof AuditableEntity) {
+
 			Map<String, String> s = ((AuditableEntity) entity).getAuditoriaData();
 			Auditoria auditoria = new Auditoria();
 			auditoria.setTipoOperacao(operacao);
 			auditoria.setDataAlteracao(Date.from(Instant.now()));
 			auditoria.setNomeEntidade(s.get("nome"));
 			auditoria.setIdEntidade(Integer.parseInt(s.get("id")));
-			auditoria.setIdUsuario(0);
-			auditoria.setUsuario("ADMIN");
+			auditoria.setUsuario(usuarioPadrao());
 			auditoria.setTipoEntidade(s.get("tipo"));
 			auditoriaRepository.saveAndFlush(auditoria);
 			return auditoria;
@@ -143,5 +144,9 @@ public abstract class AbstractJpaCrudService<D extends CrudEntity, M> {
 			throw new GenericException(ExceptionReturnMessage.REGISTRO_DESATIVADO);
 		}
 	}
-	
+
+	private Usuario usuarioPadrao() {
+		return new Usuario(1, "Marco Antônio", "12605716961", "48984654589", "48984654589", TipoUsuario.MASTER);
+	}
+
 }

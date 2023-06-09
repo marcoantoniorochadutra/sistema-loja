@@ -75,16 +75,17 @@ public class OperacaoServiceImpl extends AbstractJpaCrudService<Operacao, Operac
 	@Override
 	public void efetuarReembolso(Integer id) {
 		Optional<Operacao> operacaoTemp = getRepository().findById(id);
-		System.out.println(operacaoTemp);
 		if (operacaoTemp.isEmpty()) {
 			throw new GenericException(String.format(ExceptionReturnMessage.REGISTRO_NAO_ENCONTRADO, id));
 		} else {
 			Operacao operacao = operacaoTemp.get();
+			operacao.getProdutos().forEach(t -> {
+				Produto p = produtoRepository.findById(t.getId()).get();
+				p.setQuantidade(p.getQuantidade() + t.getQuantidade());
+				produtoRepository.saveAndFlush(p);
+				
+			});
 			deletar(id);
-//			operacao.getProdutos().forEach(t -> {
-//				produtoRepository.findById(t.getId());
-//
-//			});
 		}
 
 	}

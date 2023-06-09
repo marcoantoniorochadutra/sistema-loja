@@ -8,12 +8,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+// Devido a não pode usar JWT, classe apenas para utilização no Objeto Auditoria.
 
 @Getter
 @Setter
@@ -27,18 +29,18 @@ public class Usuario {
 	@SequenceGenerator(name = "usuario_seq", sequenceName = "usuario_seq", allocationSize = 1)
 	@NotNull
 	private Integer id;
-	@NotBlank
 	@NotNull
 	@Column(unique = true)
 	private String nome;
-	@NotBlank
 	@NotNull
 	@Column(unique = true)
 	private String cadastroNacional;
-	@NotBlank
 	@NotNull
+	@Column(unique = true, length = 11)
+	@Pattern(regexp = "^\\d{8,11}$")
 	private String numeroTelefone;
-	@NotBlank
+	@Column(unique = true, length = 11)
+	@Pattern(regexp = "^\\d{8,11}$")
 	@NotNull
 	private String numeroCelular;
 	@NotNull

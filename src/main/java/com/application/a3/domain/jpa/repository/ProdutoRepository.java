@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import com.application.a3.domain.entity.Produto;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
-	
-	@Query(value="SELECT * FROM Produto WHERE fornecedor_id = :fornecedor AND nome = :nome", nativeQuery = true)
-	List<Produto> checarExistencia(@Param("fornecedor") String fornecedor,@Param("nome") String nome);
+
+	@Query(value = "SELECT * FROM Produto WHERE fornecedor_id = :fornecedor AND nome = :nome", nativeQuery = true)
+	List<Produto> checarExistencia(@Param("fornecedor") String fornecedor, @Param("nome") String nome);
 }

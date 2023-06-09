@@ -10,5 +10,7 @@ public interface AuditoriaService {
 
 	public List<Auditoria> buscarAuditoriaFornecedor();
 	
-
+	public List<Auditoria> buscarAuditoriaOperacao();
+	
+	public List<Auditoria> buscarAuditoriaUsuario(String usuario);
 }

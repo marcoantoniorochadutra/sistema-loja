@@ -4,12 +4,13 @@ import java.util.Date;
 
 import com.application.a3.model.ref.TipoOperacao;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,17 +34,15 @@ public class Auditoria {
 	private TipoOperacao tipoOperacao;
 	@NotNull
 	private Date dataAlteracao;
-	@NotBlank
 	@NotNull
+	@Column(columnDefinition = "TEXT")
 	private String nomeEntidade;
 	@NotNull
 	private Integer idEntidade;
 	@NotNull
 	private String tipoEntidade;
-	@NotBlank
 	@NotNull
-	private String usuario;
-	@NotNull
-	private Integer idUsuario;
+	@ManyToOne
+	private Usuario usuario;
 
 }

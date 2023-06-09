@@ -9,6 +9,7 @@ import org.hibernate.type.SqlTypes;
 
 import com.application.a3.model.ref.AbstractEntityLifeCycle;
 import com.application.a3.model.ref.AuditableEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,8 +37,8 @@ public class Operacao extends AbstractEntityLifeCycle implements AuditableEntity
 	@SequenceGenerator(name = "operacao_seq", sequenceName = "operacao_seq", allocationSize = 1)
 	@NotNull
 	private int id;
-	@JdbcTypeCode(SqlTypes.JSON)
 	@NotNull
+	@JdbcTypeCode(SqlTypes.JSON)
 	private List<Produto> produtos;
 	@NotNull
 	private Double valorTotal;
@@ -46,6 +47,7 @@ public class Operacao extends AbstractEntityLifeCycle implements AuditableEntity
 	private Usuario usuario;
 	
 	@Override
+	@JsonIgnore
 	public Map<String, String> getAuditoriaData() {
 		Map<String, String> result = new HashMap<>();
 		result.put("id", Integer.toString(id));

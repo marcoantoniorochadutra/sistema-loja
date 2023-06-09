@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.application.a3.domain.entity.Fornecedor;
 import com.application.a3.model.dto.FornecedorDto;
-import com.application.a3.model.ref.TipoOperacao;
 import com.application.a3.service.FornecedorService;
 
 import jakarta.validation.Valid;

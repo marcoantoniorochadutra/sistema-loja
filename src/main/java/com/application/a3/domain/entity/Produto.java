@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.application.a3.model.ref.AbstractEntityLifeCycle;
 import com.application.a3.model.ref.AuditableEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,6 +17,7 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,6 +29,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @ToString
+@EqualsAndHashCode(callSuper = false)
 public class Produto extends AbstractEntityLifeCycle implements AuditableEntity {
 
 	@Id
@@ -49,6 +52,7 @@ public class Produto extends AbstractEntityLifeCycle implements AuditableEntity 
 	private Fornecedor fornecedor;
 	
 	@Override
+	@JsonIgnore
 	public Map<String, String> getAuditoriaData() {
 		Map<String, String> result = new HashMap<>();
 		result.put("id", Integer.toString(id));

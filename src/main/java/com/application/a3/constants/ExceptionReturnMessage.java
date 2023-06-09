@@ -10,7 +10,6 @@ public class ExceptionReturnMessage {
 	public static final String REGISTRO_NAO_ENCONTRADO = "Registro não encontrado { %s }";	
 	public static final String REFERENCIA_INEXISTENTE = "Referencia inexistente.";
 	public static final String REGISTRO_DESATIVADO = "Registro desativado.";
-	public static final String OPERACAO_FALHOU = "A Operação falhou.";
 	public static final String OPERACAO_FALHOU_SEM_ESTOQUE = "A Operação falhou. Sem estoque disponível: %s";
 	
 	public static final String CNPJ_INVALIDO = "CNPJ Inválido.";

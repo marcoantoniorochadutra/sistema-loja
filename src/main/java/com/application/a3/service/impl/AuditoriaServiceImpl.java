@@ -14,10 +14,10 @@ import com.application.a3.service.AuditoriaService;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
-public class AuditoriaServiceImpl implements AuditoriaService{
+public class AuditoriaServiceImpl implements AuditoriaService {
 
 	private final AuditoriaRepository auditoriaRepository;
-		
+
 	@Autowired
 	public AuditoriaServiceImpl(AuditoriaRepository auditoriaRepository) {
 		this.auditoriaRepository = auditoriaRepository;
@@ -33,8 +33,14 @@ public class AuditoriaServiceImpl implements AuditoriaService{
 		return auditoriaRepository.buscarAuditoriaFornecedor();
 	}
 
+	@Override
+	public List<Auditoria> buscarAuditoriaOperacao() {
+		return auditoriaRepository.buscarAuditoriaOperacao();
+	}
 
+	@Override
+	public List<Auditoria> buscarAuditoriaUsuario(String usuario) {
+		return auditoriaRepository.buscarAuditoriaUsuario(usuario);
+	}
 
-
-	
 }

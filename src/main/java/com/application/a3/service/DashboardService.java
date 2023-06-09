@@ -1,10 +1,13 @@
 package com.application.a3.service;
-// TODO criar dashboard service
+
+import java.util.Date;
+
+import com.application.a3.model.dto.DashboardResultDto;
+
 public interface DashboardService {
-	
-	public Double valorEstoqueTotal();
-	
-	public Double lucroEstoqueTotal();
+
+	public DashboardResultDto buildDashboard(Date startDate, Date endDate);
+
 	
 
 	

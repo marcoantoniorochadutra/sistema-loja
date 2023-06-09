@@ -8,7 +8,8 @@ import lombok.Getter;
 public enum TipoUsuario {
 	
 	COLABORADOR(0, "Colaborador"),
-	GERENTE(1, "Gerente");
+	GERENTE(1, "Gerente"),
+	MASTER(2, "Gerente");
 	
 	private Integer code;
 	private String value;
