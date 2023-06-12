@@ -23,7 +23,7 @@ public class OperacaoController {
 	private final OperacaoService operacaoService;
 
 	@Autowired
-	public OperacaoController(OperacaoService operacaoService) {
+	private OperacaoController(OperacaoService operacaoService) {
 		this.operacaoService = operacaoService;
 	}
 

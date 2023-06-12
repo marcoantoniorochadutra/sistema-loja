@@ -38,9 +38,4 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		return auditoriaRepository.buscarAuditoriaOperacao();
 	}
 
-	@Override
-	public List<Auditoria> buscarAuditoriaUsuario(String usuario) {
-		return auditoriaRepository.buscarAuditoriaUsuario(usuario);
-	}
-
 }

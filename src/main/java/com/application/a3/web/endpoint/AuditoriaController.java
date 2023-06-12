@@ -6,7 +6,6 @@ import javax.inject.Singleton;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,13 +20,8 @@ public class AuditoriaController {
 	private final AuditoriaService auditoriaService;
 
 	@Autowired
-	public AuditoriaController(AuditoriaService auditoriaService) {
+	private AuditoriaController(AuditoriaService auditoriaService) {
 		this.auditoriaService = auditoriaService;
-	}
-
-	@GetMapping("/buscar/usuario/{usuario}")
-	public List<Auditoria> buscarUsuario(@PathVariable("usuario") String usuario) {
-		return auditoriaService.buscarAuditoriaUsuario(usuario);
 	}
 
 	@GetMapping("/buscar/fornecedor/")

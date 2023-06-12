@@ -19,8 +19,6 @@ public interface AuditoriaRepository extends JpaRepository<Auditoria, Integer>{
 	
 	@Query(value="SELECT * FROM Auditoria WHERE tipo_entidade = 'operacao'", nativeQuery = true)
 	List<Auditoria> buscarAuditoriaOperacao();
-	
-	@Query(value="SELECT * FROM Auditoria WHERE usuario = :usuario", nativeQuery = true)
-	List<Auditoria> buscarAuditoriaUsuario(@Param("usuario") String usuario);
+
 }
 

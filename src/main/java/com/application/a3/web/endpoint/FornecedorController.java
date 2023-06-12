@@ -28,7 +28,7 @@ public class FornecedorController {
 	private final FornecedorService fornecedorService;
 
 	@Autowired
-	public FornecedorController(FornecedorService fornecedorService) {
+	private FornecedorController(FornecedorService fornecedorService) {
 		this.fornecedorService = fornecedorService;
 	}
 

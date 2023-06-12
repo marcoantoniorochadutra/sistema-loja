@@ -23,7 +23,7 @@ public class DashboardController {
 	private final DashboardService dashboardService;
 
 	@Autowired
-	public DashboardController(DashboardService dashboardService) {
+	private DashboardController(DashboardService dashboardService) {
 		this.dashboardService = dashboardService;
 	}
 	
