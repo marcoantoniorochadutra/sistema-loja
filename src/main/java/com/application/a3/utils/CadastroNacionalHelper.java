@@ -2,20 +2,19 @@ package com.application.a3.utils;
 
 import com.application.a3.constants.ExceptionReturnMessage;
 import com.application.a3.exception.GenericException;
-import com.application.a3.model.dto.FornecedorDto;
 import com.application.a3.model.ref.TipoEntidade;
 
 public class CadastroNacionalHelper {
 
-	public static boolean validarCadastroNacional(FornecedorDto dto) {
+	public static boolean validarCadastroNacional(String cadastroNacional, TipoEntidade tipo) {
 
-		if (dto.getTipo().equals(TipoEntidade.FISICA)) {
-			if (!cpfValidator(dto.getCadastroNacional())) {
+		if (tipo.equals(TipoEntidade.FISICA)) {
+			if (!cpfValidator(cadastroNacional)) {
 				throw new GenericException(ExceptionReturnMessage.CPF_INVALIDO);
 			}
 			return true;
-		} else if (dto.getTipo().equals(TipoEntidade.JURIDICA)) {
-			if (!cnpjValidator(dto.getCadastroNacional())) {
+		} else if (tipo.equals(TipoEntidade.JURIDICA)) {
+			if (!cnpjValidator(cadastroNacional)) {
 				throw new GenericException(ExceptionReturnMessage.CNPJ_INVALIDO);
 			}
 			return true;

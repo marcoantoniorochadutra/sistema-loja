@@ -52,14 +52,14 @@ public class FornecedorServiceImpl extends AbstractJpaCrudService<Fornecedor, Fo
 
 	@Override
 	public FornecedorDto cadastrarFornecedor(FornecedorDto dto) {
-		CadastroNacionalHelper.validarCadastroNacional(dto);
+		CadastroNacionalHelper.validarCadastroNacional(dto.getCadastroNacional(), dto.getTipo());
 		return cadastrar(dto);
 	}
 
 
 	@Override
 	public FornecedorDto atualizarFornecedor(Integer id, FornecedorDto dto) {
-		CadastroNacionalHelper.validarCadastroNacional(dto);
+		CadastroNacionalHelper.validarCadastroNacional(dto.getCadastroNacional(), dto.getTipo());
 		return atualizar(id, dto);
 	}
 
