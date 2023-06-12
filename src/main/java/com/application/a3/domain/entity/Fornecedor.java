@@ -39,19 +39,19 @@ public class Fornecedor extends AbstractEntityLifeCycle implements AuditableEnti
 	private Integer id;
 	@NotNull
 	private String nome;
-	@NotNull
+	@Column(nullable = true)
 	private String apelido;
 	@NotNull
 	private String email;
 	@NotNull
-	@Column(unique = true, length = 11)
-	@Pattern(regexp = "^\\d{8,11}$")
 	private String cadastroNacional;
 	@NotNull
 	@Column(unique = true, length = 11)
 	@Pattern(regexp = "^\\d{8,11}$")
 	private String numeroTelefone;
 	@NotNull
+	@Column(unique = true, length = 11)
+	@Pattern(regexp = "^\\d{8,11}$")
 	private String numeroCelular;
 	@NotNull
 	private TipoEntidade tipo;

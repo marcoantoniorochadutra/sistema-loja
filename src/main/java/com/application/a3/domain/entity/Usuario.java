@@ -34,6 +34,9 @@ public class Usuario {
 	private String nome;
 	@NotNull
 	@Column(unique = true)
+	private String email;
+	@NotNull
+	@Column(unique = true)
 	private String cadastroNacional;
 	@NotNull
 	@Column(unique = true, length = 11)

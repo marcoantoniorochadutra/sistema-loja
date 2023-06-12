@@ -146,7 +146,7 @@ public abstract class AbstractJpaCrudService<D extends CrudEntity, M> {
 	}
 
 	private Usuario usuarioPadrao() {
-		return new Usuario(1, "Marco Antônio", "12605716961", "48984654589", "48984654589", TipoUsuario.MASTER);
+		return new Usuario(1, "Marco Antônio", "marco@dev.com", "12605716961", "48984654589", "48984654589", TipoUsuario.MASTER);
 	}
 
 }
