@@ -3,6 +3,7 @@ package com.application.a3.domain.entity;
 import java.util.Date;
 
 import com.application.a3.model.ref.TipoOperacao;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,6 +44,7 @@ public class Auditoria {
 	private String tipoEntidade;
 	@NotNull
 	@ManyToOne
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Usuario usuario;
 
 }

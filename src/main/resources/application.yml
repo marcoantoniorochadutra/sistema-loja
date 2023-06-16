@@ -1,6 +1,9 @@
 server:
   port: 8090
 spring:
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
   datasource:
     password: $elsyN123
     url: jdbc:mysql://localhost:3306/dbLoja?createDatabaseIfNotExist=true
