@@ -1,6 +1,6 @@
 package com.application.a3.model.dto;
 
-import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 import com.application.a3.domain.entity.Produto;
@@ -20,7 +20,7 @@ import lombok.ToString;
 public class OperacaoDto {
 
 	private List<Produto> produtos;
-	private Instant dataVenda;
+	private Date dataVenda;
 	private Double valorTotal;
 	private Usuario usuario;
 }
